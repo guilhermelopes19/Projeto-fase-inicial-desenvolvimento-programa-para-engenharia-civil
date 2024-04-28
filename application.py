@@ -2,7 +2,7 @@
 #Guilherme Souza Lopes - 072320015
 #Sara Stephanie Costa - 072320039
 
-from services.TaskManager import TaskManager
+from services.task_manager import TaskManager
 from os import system # utilizado para limpar o terminal com os metodos system("cls") e system("clear") 
 import platform # utilizado para verificar o sistema operacional e deste modo utilizar o comando respectivo do sistema para limpar o terminal utilizando a funcao system do modulo os
 import sys # Utilizado para fechar o programa
