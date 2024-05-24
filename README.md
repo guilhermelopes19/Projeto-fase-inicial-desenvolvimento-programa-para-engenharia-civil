@@ -1,4 +1,4 @@
-# Projeto-fase-inicial-desenvolvimento-programa-para-engenharia-civil
+# Projeto Gerenciador de tarefas 🗒️
 
 ## Trabalho Escrito Overleaf
 <a href="https://pt.overleaf.com/read/rwsjpfwypgsj#d5cafa">(Clique Aqui)</a>
