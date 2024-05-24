@@ -25,5 +25,19 @@ async def autenticar_user(user: UserIn):
             detail="Usuário não encontrado!"
         )
 
+@app.put("/admin/funcionario", status_code=status.HTTP_201_CREATED)
+async def adicionar_funcionario(func: UserIn):
+    if database.adicionarFuncionario(func=func):
+        return "Funcionario Adicionado com Sucesso!"
+    else:
+        raise HTTPException(
+            status_code=status.HTTP_304_NOT_MODIFIED,
+            detail="Erro ao adicionar novo funcionario!"
+        )
+
+@app.get("/admin/funcionario")
+async def lista_funcionarios():
+    return database.getFuncionarios()
+
 if __name__ == "__main__":
     uvicorn.run(app=app)

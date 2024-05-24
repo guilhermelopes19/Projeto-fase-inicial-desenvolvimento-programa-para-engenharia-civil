@@ -71,3 +71,28 @@ def validarUser(user: UserIn):
     return {
             "status": False
         }
+
+def adicionarFuncionario(func: UserIn):
+    conn = conexãoBancoDados()
+    cursor = conn.cursor()
+
+    try:
+        cursor.execute("""INSERT INTO Users (username, password, tipo) VALUES
+                    (?, ?, 'funcionario')""", (func.username, func.password))
+        
+        conn.commit()
+        conn.close()
+        return True
+    except Exception:
+        return False
+
+def getFuncionarios():
+    conn = conexãoBancoDados()
+    cursor = conn.cursor()
+
+    cursor.execute("""SELECT username FROM Users
+                   WHERE tipo='funcionario'""")
+    
+    query = cursor.fetchall()
+
+    return query
