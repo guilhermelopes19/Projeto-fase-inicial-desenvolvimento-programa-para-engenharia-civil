@@ -1,9 +1,10 @@
 from fastapi import FastAPI, HTTPException, status
 import uvicorn
 from contextlib import asynccontextmanager 
-from src import database, user_database, tarefa_database
+from src import database, user_database, tarefa_database, relatorio_database
 from src.models.user_model import UserIn, UserOut
 from src.models.tarefa_model import Tarefa
+from src.models.relatorio_model import Relatorio
 
 app = FastAPI()
 
@@ -57,6 +58,16 @@ async def get_todas_tarefas():
 @app.post("/funcionario/tarefas")
 async def get_funcionario_tarefas(idUser: int):
     return tarefa_database.getTarefasFuncionario(idUser=idUser)
+
+@app.post("/funcionario/relatorios")
+async def adicionar_relatorio(relatorio: Relatorio):
+    if relatorio_database.adicionarRelatorio(relatorio=relatorio):
+        return "Relatorio adicionado com sucesso!"
+    else:
+        raise HTTPException(
+            status_code=status.HTTP_501_NOT_IMPLEMENTED,
+            detail="Erro ao adicionar tarefa!"
+        )
 
 if __name__ == "__main__":
     uvicorn.run(app=app)
