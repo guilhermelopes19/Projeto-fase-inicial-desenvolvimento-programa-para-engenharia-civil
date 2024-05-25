@@ -2,8 +2,8 @@ from fastapi import FastAPI, HTTPException, status
 import uvicorn
 from contextlib import asynccontextmanager 
 from src import database, user_database, tarefa_database
-from server.src.models.user_model import UserIn
-from server.src.models.tarefa_model import Tarefa
+from src.models.user_model import UserIn, UserOut
+from src.models.tarefa_model import Tarefa
 
 app = FastAPI()
 
@@ -26,7 +26,7 @@ async def autenticar_user(user: UserIn):
             detail="Usuário não encontrado!"
         )
 
-@app.put("/admin/funcionario")
+@app.put("/admin/funcionarios")
 async def adicionar_funcionario(func: UserIn):
     if user_database.adicionarFuncionario(func=func):
         return "Funcionario Adicionado com Sucesso!"
@@ -36,11 +36,11 @@ async def adicionar_funcionario(func: UserIn):
             detail="Erro ao adicionar novo funcionario!"
         )
 
-@app.get("/admin/funcionario")
+@app.get("/admin/funcionarios")
 async def lista_funcionarios():
     return user_database.getFuncionarios()
 
-@app.put("/admin/tarefa")
+@app.put("/admin/tarefas")
 async def adicionar_tarefa(tarefa: Tarefa):
     if tarefa_database.adicionarTarefa(tarefa=tarefa):
         return "Tarefa adicionada com Sucesso!"
@@ -50,9 +50,13 @@ async def adicionar_tarefa(tarefa: Tarefa):
             detail="Erro ao adicionar tarefa!"
         )
 
-@app.get("/admin/tarefa")
+@app.get("/admin/tarefas")
 async def get_todas_tarefas():
     return tarefa_database.getTodasTarefas()
+
+@app.post("/funcionario/tarefas")
+async def get_funcionario_tarefas(idUser: int):
+    return tarefa_database.getTarefasFuncionario(idUser=idUser)
 
 if __name__ == "__main__":
     uvicorn.run(app=app)

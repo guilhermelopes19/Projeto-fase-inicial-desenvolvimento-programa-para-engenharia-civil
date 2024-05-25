@@ -1,11 +1,11 @@
 from src.database import conexãoBancoDados
-from server.src.models.user_model import UserIn, UserOut
+from src.models.user_model import UserIn, UserOut
 
 def validarUser(user: UserIn):
     conn = conexãoBancoDados()
     cursor = conn.cursor()
 
-    cursor.execute("SELECT username, password, tipo FROM Users WHERE username = ? AND password = ?;", (user.username, user.password))
+    cursor.execute("SELECT id, username, password, tipo FROM Users WHERE username = ? AND password = ?;", (user.username, user.password))
     
     query = cursor.fetchone()
     conn.close()
@@ -13,7 +13,7 @@ def validarUser(user: UserIn):
     if query != None:
         return {
             "status": True,
-            "user": UserOut(username=query[0], tipo=query[2])}
+            "user": UserOut(id=query[0], username=query[1], tipo=query[3])}
     
     return {
             "status": False

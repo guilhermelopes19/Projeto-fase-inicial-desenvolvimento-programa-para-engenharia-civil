@@ -1,4 +1,4 @@
-from server.src.models.tarefa_model import Tarefa
+from src.models.tarefa_model import Tarefa
 from src.database import conexãoBancoDados
 
 def adicionarTarefa(tarefa: Tarefa) -> bool:
@@ -51,6 +51,7 @@ def getTodasTarefas() -> dict:
         tar = cursor.fetchone()
 
         tarefas.append({
+            "id": key,
             "nome": tar[0],
             "descricao": tar[1],
             "data_prevista_conclusao": tar[2],
@@ -64,5 +65,34 @@ def getTodasTarefas() -> dict:
             tarefas[c]["funcionarios"].append(funcName)
 
         c += 1
+
+    conn.close()
+    return tarefas
+
+def getTarefasFuncionario(idUser: int):
+    conn = conexãoBancoDados()
+    cursor = conn.cursor()
+
+    cursor.execute("""SELECT id_tarefa FROM UserExecutarTarefa
+                   WHERE id_user = ?;""", (idUser,))
+    idTarefas = cursor.fetchall()
+    tarefas = []
+    c = 0
+
+    while c < len(idTarefas):
+        cursor.execute("""SELECT * FROM Tarefas
+                       WHERE id = ?;""", (idTarefas[c][0],))
+        tarefa = cursor.fetchall()
+        
+        tarefas.append({
+            "id": tarefa[0][0],
+            "nome": tarefa[0][1],
+            "descricao": tarefa[0][2],
+            "data_prevista_conclusao": tarefa[0][3]
+        })
+
+        c += 1
+
+    conn.close()
 
     return tarefas
