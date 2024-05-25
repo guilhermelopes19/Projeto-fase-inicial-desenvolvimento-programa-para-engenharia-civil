@@ -1,8 +1,9 @@
 from fastapi import FastAPI, HTTPException, status
 import uvicorn
 from contextlib import asynccontextmanager 
-from src.user_models import UserIn
-from src import database
+from src import database, user_database, tarefa_database
+from src.models.user_models import UserIn
+from src.models.tarefa_models import TarefaIn
 
 app = FastAPI()
 
@@ -15,7 +16,7 @@ app.router.lifespan_context = lifespan
 
 @app.post("/auth")
 async def autenticar_user(user: UserIn):
-    validarUser = database.validarUser(user=user)
+    validarUser = user_database.validarUser(user=user)
 
     if validarUser.get("status"):
         return validarUser.get("user")
@@ -27,17 +28,27 @@ async def autenticar_user(user: UserIn):
 
 @app.put("/admin/funcionario", status_code=status.HTTP_201_CREATED)
 async def adicionar_funcionario(func: UserIn):
-    if database.adicionarFuncionario(func=func):
+    if user_database.adicionarFuncionario(func=func):
         return "Funcionario Adicionado com Sucesso!"
     else:
         raise HTTPException(
-            status_code=status.HTTP_304_NOT_MODIFIED,
+            status_code=status.HTTP_501_NOT_IMPLEMENTED,
             detail="Erro ao adicionar novo funcionario!"
         )
 
 @app.get("/admin/funcionario")
 async def lista_funcionarios():
-    return database.getFuncionarios()
+    return user_database.getFuncionarios()
+
+@app.put("/admin/tarefa", status_code=status.HTTP_201_CREATED)
+async def adicionar_tarefa(tarefa: TarefaIn):
+    if tarefa_database.adicionarTarefa(tarefa=tarefa):
+        return "Tarefa adicionada com Sucesso!"
+    else:
+        raise HTTPException(
+            status_code=status.HTTP_501_NOT_IMPLEMENTED,
+            detail="Erro ao adicionar tarefa!"
+        )
 
 if __name__ == "__main__":
     uvicorn.run(app=app)
