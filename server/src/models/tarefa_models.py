@@ -12,3 +12,4 @@ class TarefaOut(BaseModel):
     nome: str
     descricao: str
     data_prevista_conclusao: str
+    funcionarios: list

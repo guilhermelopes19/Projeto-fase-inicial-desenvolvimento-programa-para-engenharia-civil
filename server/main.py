@@ -50,5 +50,9 @@ async def adicionar_tarefa(tarefa: TarefaIn):
             detail="Erro ao adicionar tarefa!"
         )
 
+@app.get("/admin/tarefa")
+async def get_todas_tarefas():
+    return tarefa_database.getTodasTarefas()
+
 if __name__ == "__main__":
     uvicorn.run(app=app)

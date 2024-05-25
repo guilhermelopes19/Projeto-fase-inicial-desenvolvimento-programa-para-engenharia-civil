@@ -24,7 +24,7 @@ def adicionarFuncionario(func: UserIn):
         conn = conexãoBancoDados()
         cursor = conn.cursor()
         cursor.execute("""INSERT INTO Users (username, password, tipo) VALUES
-                    (?, ?, 'funcionario')""", (func.username, func.password))
+                    (?, ?, 'funcionario');""", (func.username, func.password))
         
         conn.commit()
         conn.close()
@@ -39,7 +39,7 @@ def getFuncionarios():
     cursor = conn.cursor()
 
     cursor.execute("""SELECT username FROM Users
-                   WHERE tipo='funcionario'""")
+                   WHERE tipo='funcionario';""")
     
     query = cursor.fetchall()
 
