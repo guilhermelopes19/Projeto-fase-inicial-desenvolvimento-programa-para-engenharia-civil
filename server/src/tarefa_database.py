@@ -1,7 +1,7 @@
-from src.models.tarefa_models import TarefaIn
+from src.models.tarefa_models import Tarefa
 from src.database import conexãoBancoDados
 
-def adicionarTarefa(tarefa: TarefaIn) -> bool:
+def adicionarTarefa(tarefa: Tarefa) -> bool:
     try:
         conn = conexãoBancoDados()
         cursor = conn.cursor()

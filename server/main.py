@@ -3,7 +3,7 @@ import uvicorn
 from contextlib import asynccontextmanager 
 from src import database, user_database, tarefa_database
 from src.models.user_models import UserIn
-from src.models.tarefa_models import TarefaIn
+from src.models.tarefa_models import Tarefa
 
 app = FastAPI()
 
@@ -41,7 +41,7 @@ async def lista_funcionarios():
     return user_database.getFuncionarios()
 
 @app.put("/admin/tarefa")
-async def adicionar_tarefa(tarefa: TarefaIn):
+async def adicionar_tarefa(tarefa: Tarefa):
     if tarefa_database.adicionarTarefa(tarefa=tarefa):
         return "Tarefa adicionada com Sucesso!"
     else:
