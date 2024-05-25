@@ -2,7 +2,7 @@ from fastapi import FastAPI, HTTPException, status
 import uvicorn
 from contextlib import asynccontextmanager 
 from src import database, user_database, tarefa_database, relatorio_database
-from src.models.user_model import UserIn, UserOut
+from src.models.user_model import UserIn
 from src.models.tarefa_model import Tarefa
 from src.models.relatorio_model import Relatorio
 
