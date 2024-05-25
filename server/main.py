@@ -2,8 +2,8 @@ from fastapi import FastAPI, HTTPException, status
 import uvicorn
 from contextlib import asynccontextmanager 
 from src import database, user_database, tarefa_database
-from src.models.user_models import UserIn
-from src.models.tarefa_models import Tarefa
+from server.src.models.user_model import UserIn
+from server.src.models.tarefa_model import Tarefa
 
 app = FastAPI()
 

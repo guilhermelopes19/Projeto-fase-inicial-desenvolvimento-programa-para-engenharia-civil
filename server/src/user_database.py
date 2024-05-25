@@ -1,5 +1,5 @@
 from src.database import conexãoBancoDados
-from src.models.user_models import UserIn, UserOut
+from server.src.models.user_model import UserIn, UserOut
 
 def validarUser(user: UserIn):
     conn = conexãoBancoDados()

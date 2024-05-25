@@ -1,4 +1,4 @@
-from src.models.tarefa_models import Tarefa
+from server.src.models.tarefa_model import Tarefa
 from src.database import conexãoBancoDados
 
 def adicionarTarefa(tarefa: Tarefa) -> bool:
