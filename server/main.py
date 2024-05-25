@@ -26,7 +26,7 @@ async def autenticar_user(user: UserIn):
             detail="Usuário não encontrado!"
         )
 
-@app.put("/admin/funcionario", status_code=status.HTTP_201_CREATED)
+@app.put("/admin/funcionario")
 async def adicionar_funcionario(func: UserIn):
     if user_database.adicionarFuncionario(func=func):
         return "Funcionario Adicionado com Sucesso!"
@@ -40,7 +40,7 @@ async def adicionar_funcionario(func: UserIn):
 async def lista_funcionarios():
     return user_database.getFuncionarios()
 
-@app.put("/admin/tarefa", status_code=status.HTTP_201_CREATED)
+@app.put("/admin/tarefa")
 async def adicionar_tarefa(tarefa: TarefaIn):
     if tarefa_database.adicionarTarefa(tarefa=tarefa):
         return "Tarefa adicionada com Sucesso!"

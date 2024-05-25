@@ -10,7 +10,6 @@ def adicionarTarefa(tarefa: TarefaIn) -> bool:
                     (nome, descricao, data_prevista_conclusao) VALUES
                     (?, ?, ?)
                     """, (tarefa.nome, tarefa.descricao, tarefa.data_prevista_conclusao))
-        conn.commit()
 
         cursor.execute("""SELECT id FROM Tarefas
                         WHERE nome=?""", (tarefa.nome,))
@@ -21,8 +20,8 @@ def adicionarTarefa(tarefa: TarefaIn) -> bool:
             cursor.execute("""INSERT INTO UserExecutarTarefa
                         (id_user, id_tarefa) VALUES
                         (?, ?)""", (func, id_tarefa))
-            conn.commit()
-
+            
+        conn.commit()
         conn.close()
 
         return True
