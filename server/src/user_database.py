@@ -42,7 +42,11 @@ def getFuncionarios():
                    WHERE tipo='funcionario';""")
     
     query = cursor.fetchall()
-
     conn.close()
 
-    return query
+    funcionarios = []
+    
+    for func in query:
+        funcionarios.append(func[0])
+
+    return funcionarios
