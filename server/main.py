@@ -55,7 +55,7 @@ async def adicionar_tarefa(tarefa: Tarefa):
 async def get_todas_tarefas():
     return tarefa_database.getTodasTarefas()
 
-@app.post("/funcionario/tarefas")
+@app.get("/funcionario/tarefas")
 async def get_funcionario_tarefas(idUser: int):
     return tarefa_database.getTarefasFuncionario(idUser=idUser)
 
@@ -68,6 +68,10 @@ async def adicionar_relatorio(relatorio: Relatorio):
             status_code=status.HTTP_501_NOT_IMPLEMENTED,
             detail="Erro ao adicionar tarefa!"
         )
+
+@app.get("/funcionario/relatorios")
+async def relatorios_cadastrados(idUser: int):
+    return relatorio_database.getRelatoriosFuncionario(idUser=idUser)
 
 if __name__ == "__main__":
     uvicorn.run(app=app)
