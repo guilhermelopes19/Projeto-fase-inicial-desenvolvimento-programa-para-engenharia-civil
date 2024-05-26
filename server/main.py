@@ -63,7 +63,7 @@ async def get_todos_relatorios():
 async def get_funcionario_tarefas(idUser: int):
     return tarefa_database.getTarefasFuncionario(idUser=idUser)
 
-@app.post("/funcionario/relatorios")
+@app.put("/funcionario/relatorios")
 async def adicionar_relatorio(relatorio: Relatorio):
     if relatorio_database.adicionarRelatorio(relatorio=relatorio):
         return "Relatorio adicionado com sucesso!"
