@@ -1,2 +1,1 @@
-# Projeto Gerenciador de Tarefas
-
+# Projeto Gerenciador de tarefas 🗒️
