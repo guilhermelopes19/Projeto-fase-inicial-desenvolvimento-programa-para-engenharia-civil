@@ -2,7 +2,7 @@ from fastapi import FastAPI, HTTPException, status
 import uvicorn
 from contextlib import asynccontextmanager 
 from src import database, user_database, tarefa_database, relatorio_database
-from src.models.user_model import UserIn, UserOut
+from src.models.user_model import UserIn
 from src.models.tarefa_model import Tarefa
 from src.models.relatorio_model import Relatorio
 
@@ -55,11 +55,15 @@ async def adicionar_tarefa(tarefa: Tarefa):
 async def get_todas_tarefas():
     return tarefa_database.getTodasTarefas()
 
+@app.get("/admin/relatorios")
+async def get_todos_relatorios():
+    return relatorio_database.getTodosRelatorios()
+
 @app.get("/funcionario/tarefas")
 async def get_funcionario_tarefas(idUser: int):
     return tarefa_database.getTarefasFuncionario(idUser=idUser)
 
-@app.post("/funcionario/relatorios")
+@app.put("/funcionario/relatorios")
 async def adicionar_relatorio(relatorio: Relatorio):
     if relatorio_database.adicionarRelatorio(relatorio=relatorio):
         return "Relatorio adicionado com sucesso!"
