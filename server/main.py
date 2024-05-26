@@ -55,6 +55,10 @@ async def adicionar_tarefa(tarefa: Tarefa):
 async def get_todas_tarefas():
     return tarefa_database.getTodasTarefas()
 
+@app.get("/admin/relatorios")
+async def get_todos_relatorios():
+    return relatorio_database.getTodosRelatorios()
+
 @app.get("/funcionario/tarefas")
 async def get_funcionario_tarefas(idUser: int):
     return tarefa_database.getTarefasFuncionario(idUser=idUser)
