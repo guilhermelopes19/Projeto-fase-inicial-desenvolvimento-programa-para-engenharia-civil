@@ -38,7 +38,7 @@ def getFuncionarios():
     conn = conexãoBancoDados()
     cursor = conn.cursor()
 
-    cursor.execute("""SELECT username FROM Users
+    cursor.execute("""SELECT id, username FROM Users
                    WHERE tipo='funcionario';""")
     
     query = cursor.fetchall()
@@ -47,6 +47,9 @@ def getFuncionarios():
     funcionarios = []
     
     for func in query:
-        funcionarios.append(func[0])
+        funcionarios.append({
+                "id": func[0],
+                "nome": func[1]
+            })
 
     return funcionarios
