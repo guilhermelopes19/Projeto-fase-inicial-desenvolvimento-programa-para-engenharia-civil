@@ -1,11 +1,13 @@
 from src.database import conexãoBancoDados
 from src.models.user_model import UserIn, UserOut
 
-def validarUser(user: UserIn):
+# Valida o usuario no banco de dados. Recebe como argumento um objeto UserIn
+def validarUser(user: UserIn) -> bool:
     conn = conexãoBancoDados()
     cursor = conn.cursor()
 
-    cursor.execute("SELECT id, username, password, tipo FROM Users WHERE username = ? AND password = ?;", (user.username, user.password))
+    cursor.execute("""SELECT id, username, password, tipo FROM Users 
+                   WHERE username = ? AND password = ?;""", (user.username, user.password))
     
     query = cursor.fetchone()
     conn.close()
@@ -19,10 +21,12 @@ def validarUser(user: UserIn):
             "status": False
         }
 
-def adicionarFuncionario(func: UserIn):
+# Adiciona um funcionario no banco de dados. Recebe um objeto UserIn
+def adicionarFuncionario(func: UserIn) -> bool:
     try:
         conn = conexãoBancoDados()
         cursor = conn.cursor()
+        
         cursor.execute("""INSERT INTO Users (username, password, tipo) VALUES
                     (?, ?, 'funcionario');""", (func.username, func.password))
         
@@ -34,7 +38,8 @@ def adicionarFuncionario(func: UserIn):
         print(err)
         return False
 
-def getFuncionarios():
+# Retorna uma lista de dicionarios com todos os funcionarios
+def getFuncionarios() -> list:
     conn = conexãoBancoDados()
     cursor = conn.cursor()
 

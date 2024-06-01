@@ -1,6 +1,7 @@
 import sqlite3
 
-def conexãoBancoDados():
+# Cria a conexão com banco de dados
+def conexãoBancoDados() -> sqlite3.Connection:
 
     caminhoBd = "./server/database/gerenciador-tarefas.db"
     
@@ -8,7 +9,8 @@ def conexãoBancoDados():
 
     return conn
 
-async def inicializarBancoDados():
+# Inicializa banco de dados
+async def inicializarBancoDados() -> None:
     conn = conexãoBancoDados()
     cursor = conn.cursor()
 
