@@ -1,10 +1,10 @@
-from src.database import conexãoBancoDados
+from src.database import conexaoBancoDados
 from src.models.relatorio_model import Relatorio
 
 # Adiciona um novo relatorio no banco de dados. Recebe um objeto Relatorio como argumento
 def adicionarRelatorio(relatorio: Relatorio) -> bool:
     try:
-        conn = conexãoBancoDados()
+        conn = conexaoBancoDados()
         cursor = conn.cursor()
 
         cursor.execute("""INSERT INTO Relatorios 
@@ -22,7 +22,7 @@ def adicionarRelatorio(relatorio: Relatorio) -> bool:
 
 # Retorna uma lista de dicionarios com os relatorios do funcionario. Recebe o id do funcionario como argumento
 def getRelatoriosFuncionario(idUser: int) -> list:
-    conn = conexãoBancoDados()
+    conn = conexaoBancoDados()
     cursor = conn.cursor()
 
     cursor.execute("""SELECT id, id_tarefa, data_criação, texto FROM Relatorios
@@ -50,7 +50,7 @@ def getRelatoriosFuncionario(idUser: int) -> list:
 
 # Retorna uma lista de dicionarios com todos os relatorios cadastrados no sistema
 def getTodosRelatorios() -> list:
-    conn = conexãoBancoDados()
+    conn = conexaoBancoDados()
     cursor = conn.cursor()
 
     cursor.execute("""SELECT id, id_user, id_tarefa, data_criação, texto FROM Relatorios;""")

@@ -1,7 +1,7 @@
 import sqlite3
 
 # Cria a conexão com banco de dados
-def conexãoBancoDados() -> sqlite3.Connection:
+def conexaoBancoDados() -> sqlite3.Connection:
 
     caminhoBd = "./server/database/gerenciador-tarefas.db"
     
@@ -11,7 +11,7 @@ def conexãoBancoDados() -> sqlite3.Connection:
 
 # Inicializa banco de dados
 async def inicializarBancoDados() -> None:
-    conn = conexãoBancoDados()
+    conn = conexaoBancoDados()
     cursor = conn.cursor()
 
     cursor.execute('''CREATE TABLE IF NOT EXISTS Users(

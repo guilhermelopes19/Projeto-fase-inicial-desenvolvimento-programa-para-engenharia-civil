@@ -1,10 +1,10 @@
 from src.models.tarefa_model import Tarefa
-from src.database import conexãoBancoDados
+from src.database import conexaoBancoDados
 
 # Adiciona uma nova tarefa no banco de dados. Recebe como argumento um objeto Tarefa
 def adicionarTarefa(tarefa: Tarefa) -> bool:
     try:
-        conn = conexãoBancoDados()
+        conn = conexaoBancoDados()
         cursor = conn.cursor()
 
         cursor.execute("""INSERT INTO Tarefas 
@@ -32,7 +32,7 @@ def adicionarTarefa(tarefa: Tarefa) -> bool:
 
 # Retorna uma lista de dicionarios com todas as tarefas cadastradas no banco de dados
 def getTodasTarefas() -> list:
-    conn = conexãoBancoDados()
+    conn = conexaoBancoDados()
     cursor = conn.cursor()
     tarefasId = {}
     tarefas = []
@@ -73,7 +73,7 @@ def getTodasTarefas() -> list:
 
 # Retorna uma lista de dicionario com todas as tarefas do funcionario. Recebe o id do funcionario como argumento
 def getTarefasFuncionario(idUser: int) -> list:
-    conn = conexãoBancoDados()
+    conn = conexaoBancoDados()
     cursor = conn.cursor()
 
     cursor.execute("""SELECT id_tarefa FROM UserExecutarTarefa
