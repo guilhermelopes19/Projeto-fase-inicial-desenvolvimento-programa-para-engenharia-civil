@@ -23,9 +23,11 @@ def login():
         else:
             print("Usuário ou senha incorretos!")
             input("(PRESSIONE ENTER PARA TENTAR NOVAMENTE)")
-    
+    # Abre o arquivo user.json para escrita
     file = open("user.json", "w")
+    # Escreve os dados da resposta do servidor no arquivo user.json
     json.dump(request.json(), file)
+    # Fecha o arquivo
     file.close()
 
     print("Logado com sucesso!")

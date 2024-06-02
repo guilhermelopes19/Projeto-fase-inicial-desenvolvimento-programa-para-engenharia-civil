@@ -6,6 +6,7 @@ from datetime import date
 
 url = "http://127.0.0.1:8000"
 
+# Area com as opcoes que o funcionario pode executar no sistema
 def menuFunc():
      while True:
         os.system("clear")
@@ -30,6 +31,7 @@ def menuFunc():
         except Exception:
             pass
 
+# Area para visualizar as tarefas do funcionario cadastradas no sistema
 def visualizarTarefas():
     os.system("clear")
 
@@ -52,6 +54,7 @@ def visualizarTarefas():
 
     input("(PRESSIONE ENTER PARA VOLTAR AO MENU)")
 
+# Area para adicionar um relatorio
 def adicionarRelatorio():
     os.system("clear")
 
@@ -92,6 +95,7 @@ def adicionarRelatorio():
 
     input("(PRESSIONE ENTER PARA VOLTAR MENU)")
 
+# Area para visualizar os relatorios do funcionario
 def visualizarRelatorios():
     os.system("clear")
 

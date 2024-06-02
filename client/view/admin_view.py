@@ -4,6 +4,7 @@ import sys
 
 url = "http://127.0.0.1:8000"
 
+# Area com as opcoes que o administrador pode executar no sistema
 def menuAdmin():
     while True:
         os.system("clear")
@@ -14,7 +15,7 @@ def menuAdmin():
             "3": ["Criar Nova Tarefa", criarTarefa],
             "4": ["Visualizar Tarefas", visualizarTarefas],
             "5": ["Visualizar Relatorios", visualizarRelatorios],
-            "6": ["Sair", sys.exit],
+            "6": ["Sair", sys.exit]
         }
 
         print("-"*10, 'ADMIN', "-"*10)
@@ -30,6 +31,7 @@ def menuAdmin():
         except Exception:
             pass
 
+# Area para adicionar um novo funcionario no sistema 
 def adicionarFuncionario():
     os.system("clear")
 
@@ -49,6 +51,7 @@ def adicionarFuncionario():
 
     input("(PRESSIONE ENTER PARA VOLTAR AO MENU)")
 
+# Area para visualizacao dos funcionarios cadastrados no sistema
 def visualizarFuncionarios():
     os.system("clear")
 
@@ -67,10 +70,12 @@ def visualizarFuncionarios():
     
     input("(PRESSIONE ENTER PARA VOLTAR AO MENU)")
 
+# Area para criar uma nova tarefa
 def criarTarefa():
     os.system("clear")
 
     print("-"*10, " Criar Tarefa ", "-"*10)
+    
     tarefa = {
         "nome": "",
         "descricao": "",
@@ -99,7 +104,7 @@ def criarTarefa():
     while True:
         funcionario = input(">> ")
 
-        if funcionario is "":
+        if funcionario == "":
             break
         else:
             try:
@@ -119,6 +124,7 @@ def criarTarefa():
 
     input("(PRESSIONE ENTER PARA VOLTAR AO MENU)")
 
+# Area para visualizar tarefas cadastradas no sistema
 def visualizarTarefas():
     os.system("clear")
 
@@ -142,6 +148,7 @@ def visualizarTarefas():
 
     input("(PRESSIONE ENTER PARA VOLTAR AO MENU)")
 
+# Area para visualizar relatorios
 def visualizarRelatorios():
     os.system("clear")
 
@@ -150,7 +157,7 @@ def visualizarRelatorios():
     request = requests.get(url+"/admin/relatorios")
 
     if request.json() == []:
-        print("Sem relatórios cadastradas!")
+        print("Sem relatórios cadastrados!")
     else:
         for relatorio in request.json():
             print("-"*60)
