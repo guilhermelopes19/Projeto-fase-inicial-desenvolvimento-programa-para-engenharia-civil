@@ -74,8 +74,7 @@ def adicionarRelatorio():
     print("Digite o texto do relatório: ")
     textoRelatorio = input(">> ")
 
-    dataAtual = date.today()
-    dataAtual = f'{dataAtual.day}-{dataAtual.month}-{dataAtual.year}'
+    dataAtual = date.today().strftime("%d-%m-%Y")
 
     relatorio = {
         "id_user": idUser,
