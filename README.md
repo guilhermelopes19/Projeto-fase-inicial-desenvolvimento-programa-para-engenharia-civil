@@ -31,7 +31,7 @@ pip install -r requirements.txt
 A seguinte biblioteca sera instalada
 - Requests
 
-## Como rodar
+## Como rodar ⚙️
 
 Para o funcionamento do programa, o servidor deve estar rodando. Siga os passos abaixo:
 
