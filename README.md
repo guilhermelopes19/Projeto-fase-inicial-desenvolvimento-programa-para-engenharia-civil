@@ -48,6 +48,7 @@ python main.py
 > O uvicorn configura o servidor no endereco http://127.0.0.1/8000. Certifique-se que esta porta esta livre.
 
 2. **Rodando o cliente**:
+
 Após iniciar o servidor, deixe em segundo plano, abra um novo terminal e execute o arquivo ```app.py``` do cliente:
 ```bash
 #Estando na pasta raiz do projeto
