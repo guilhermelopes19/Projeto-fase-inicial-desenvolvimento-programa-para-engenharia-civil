@@ -28,7 +28,8 @@ async def autenticar_user(user: UserIn):
 
     token = jwt.encode({
         'exp': datetime.now(timezone.utc) + timedelta(minutes=30),
-        "nivel-acesso": validarUser.get("user").tipo
+        "nivel-acesso": validarUser.get("user").tipo,
+        "id": validarUser.get("user").id
     }, key=token_secret, algorithm='HS256')
 
     validarUser.get("user").token = token
@@ -46,7 +47,6 @@ async def autenticar_user(user: UserIn):
 async def adicionar_funcionario(func: UserIn, token: str):
     try:
         token_deco = jwt.decode(token, key=token_secret, algorithms="HS256")
-        print(token_deco)
 
         if token_deco.get("nivel-acesso") == 'admin':
             if user_database.adicionarFuncionario(func=func):
@@ -79,7 +79,6 @@ async def adicionar_funcionario(func: UserIn, token: str):
 async def lista_funcionarios(token: str):
     try:
         token_deco = jwt.decode(token, key=token_secret, algorithms="HS256")
-        print(token_deco)
 
         if token_deco.get("nivel-acesso") == 'admin':
             return user_database.getFuncionarios()
@@ -106,7 +105,6 @@ async def lista_funcionarios(token: str):
 async def adicionar_tarefa(tarefa: Tarefa, token: str):
     try:
         token_deco = jwt.decode(token, key=token_secret, algorithms="HS256")
-        print(token_deco)
 
         if token_deco.get("nivel-acesso") == 'admin':
             if tarefa_database.adicionarTarefa(tarefa=tarefa):
@@ -139,7 +137,6 @@ async def adicionar_tarefa(tarefa: Tarefa, token: str):
 async def get_todas_tarefas(token: str):
     try:
         token_deco = jwt.decode(token, key=token_secret, algorithms="HS256")
-        print(token_deco)
 
         if token_deco.get("nivel-acesso") == 'admin':
             return tarefa_database.getTodasTarefas()
@@ -166,7 +163,6 @@ async def get_todas_tarefas(token: str):
 async def get_todos_relatorios(token: str):
     try:
         token_deco = jwt.decode(token, key=token_secret, algorithms="HS256")
-        print(token_deco)
 
         if token_deco.get("nivel-acesso") == 'admin':
             return relatorio_database.getTodosRelatorios()
@@ -190,13 +186,12 @@ async def get_todos_relatorios(token: str):
 
 # Rota que lista todas as tarefas do funcionario. Recebe o id do usuário
 @app.get("/funcionario/tarefas")
-async def get_funcionario_tarefas(idUser: int, token: str):
+async def get_funcionario_tarefas(token: str):
     try:
         token_deco = jwt.decode(token, key=token_secret, algorithms="HS256")
-        print(token_deco)
 
         if token_deco.get("nivel-acesso") == 'funcionario':
-            return tarefa_database.getTarefasFuncionario(idUser=idUser)
+            return tarefa_database.getTarefasFuncionario(idUser=token_deco.get("id"))
         else:
             raise PermissionError
     except jwt.DecodeError:
@@ -220,7 +215,6 @@ async def get_funcionario_tarefas(idUser: int, token: str):
 async def adicionar_relatorio(relatorio: Relatorio, token: str):
     try:
         token_deco = jwt.decode(token, key=token_secret, algorithms="HS256")
-        print(token_deco)
 
         if token_deco.get("nivel-acesso") == 'funcionario':
             if relatorio_database.adicionarRelatorio(relatorio=relatorio):
@@ -250,13 +244,12 @@ async def adicionar_relatorio(relatorio: Relatorio, token: str):
 
 # Rota que lista todos relatorios cadastrados pelo funcionario
 @app.get("/funcionario/relatorios")
-async def relatorios_cadastrados(idUser: int, token: str):
+async def relatorios_cadastrados(token: str):
     try:
         token_deco = jwt.decode(token, key=token_secret, algorithms="HS256")
-        print(token_deco)
 
         if token_deco.get("nivel-acesso") == 'funcionario':
-            return relatorio_database.getRelatoriosFuncionario(idUser=idUser)
+            return relatorio_database.getRelatoriosFuncionario(idUser=token_deco.get("id"))
         else:
             raise PermissionError
     except jwt.DecodeError:
