@@ -9,7 +9,7 @@ url = "http://127.0.0.1:8000"
 # Area com as opcoes que o funcionario pode executar no sistema
 def menuFunc():
      while True:
-        os.system("clear")
+        os.system("clear || cls")
 
         menuOptions = {
             "1": ["Visualizar Tarefas", visualizarTarefas],
@@ -33,15 +33,15 @@ def menuFunc():
 
 # Area para visualizar as tarefas do funcionario cadastradas no sistema
 def visualizarTarefas():
-    os.system("clear")
+    os.system("clear || cls")
 
     print("-"*10, " Visualizar Tarefas ", "-"*10)
 
-    file = open("user.json", "r")
-    idUser = (json.load(file))["id"]
-    file.close()
+    with open("user.json", "r") as file:
+        user_dados = json.load(file)
+        token = user_dados["token"]
 
-    request = requests.get(f"{url}/funcionario/tarefas?idUser={idUser}")
+    request = requests.get(f"{url}/funcionario/tarefas?token={token}")
 
     if request.json() == []:
         print("Sem tarefas cadastradas!")
@@ -56,15 +56,16 @@ def visualizarTarefas():
 
 # Area para adicionar um relatorio
 def adicionarRelatorio():
-    os.system("clear")
+    os.system("clear || cls")
 
     print("-"*10, "Adicionar Relatorios", "-"*10)
 
-    file = open("user.json", "r")
-    idUser = (json.load(file))["id"]
-    file.close()
+    with open("user.json", "r") as file:
+        user_dados = json.load(file)
+        idUser = user_dados["id"]
+        token = user_dados["token"]
 
-    request = requests.get(f"{url}/funcionario/tarefas?idUser={idUser}")
+    request = requests.get(f"{url}/funcionario/tarefas?token={token}")
 
     print("Tarefas: ")
 
@@ -86,7 +87,7 @@ def adicionarRelatorio():
         "data_criacao": dataAtual
     }
 
-    request = requests.put(f"{url}/funcionario/relatorios", json=relatorio)
+    request = requests.put(f"{url}/funcionario/relatorios?token={token}", json=relatorio)
 
     if request.status_code == 200:
         print("Relatório adicionado com sucesso!")
@@ -97,15 +98,15 @@ def adicionarRelatorio():
 
 # Area para visualizar os relatorios do funcionario
 def visualizarRelatorios():
-    os.system("clear")
+    os.system("clear || cls")
 
     print("-"*10, "Visualizar Relatorios", "-"*10)
 
-    file = open("user.json", "r")
-    idUser = (json.load(file))["id"]
-    file.close()
+    with open("user.json", "r") as file:
+        user_dados = json.load(file)
+        token = user_dados["token"]
 
-    request = requests.get(f"{url}/funcionario/relatorios?idUser={idUser}")
+    request = requests.get(f"{url}/funcionario/relatorios?token={token}")
     
     if request.json() == []:
         print("Sem relatórios cadastradas!")

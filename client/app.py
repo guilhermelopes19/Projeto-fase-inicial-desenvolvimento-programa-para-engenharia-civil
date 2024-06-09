@@ -9,7 +9,7 @@ url = "http://127.0.0.1:8000"
 # Area para o usuario inserir nome de usuario e senha. Envia para servidor que valida o usuario, pode seguir para o menu do administrador, para o menu do funcionario ou caso o usuario nao seja encontrado permitir que o usuario digite o nome de usuario e senha novamente 
 def login():
     while True:
-        os.system("clear || clean")
+        os.system("clear || cls")
 
         print("-"*10, " Login ", "-"*10)
 

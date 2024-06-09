@@ -1,13 +1,14 @@
 import requests
 import os
 import sys
+import json
 
 url = "http://127.0.0.1:8000"
 
 # Area com as opcoes que o administrador pode executar no sistema
 def menuAdmin():
     while True:
-        os.system("clear")
+        os.system("clear || cls")
 
         menuOptions = {
             "1": ["Adicionar Funcionário", adicionarFuncionario],
@@ -33,7 +34,7 @@ def menuAdmin():
 
 # Area para adicionar um novo funcionario no sistema 
 def adicionarFuncionario():
-    os.system("clear")
+    os.system("clear || cls")
 
     print("-"*10, " Adicionar Funcionário ", "-"*10)
     
@@ -42,7 +43,11 @@ def adicionarFuncionario():
     print("Senha do funcionário: ")
     passwordFunc = input(">> ")
 
-    request = requests.put(url+"/admin/funcionarios", json={"username": usernameFunc, "password": passwordFunc})
+    with open("user.json", "r") as file:
+        user_dados = json.load(file)
+        token = user_dados["token"]
+
+    request = requests.put(url+"/admin/funcionarios?token="+token, json={"username": usernameFunc, "password": passwordFunc})
 
     if request.status_code == 200:
         print("Funcionario adicionado com sucesso!")
@@ -53,11 +58,15 @@ def adicionarFuncionario():
 
 # Area para visualizacao dos funcionarios cadastrados no sistema
 def visualizarFuncionarios():
-    os.system("clear")
+    os.system("clear || cls")
 
     print("-"*5, " Visualizar Funcionários ", "-"*5)
 
-    request = requests.get(url+"/admin/funcionarios")
+    with open("user.json", "r") as file:
+        user_dados = json.load(file)
+        token = user_dados["token"]
+
+    request = requests.get(url+"/admin/funcionarios?token="+token)
 
     if request.json() == []:
         print("Sem funcionarios cadastrados!")
@@ -72,9 +81,13 @@ def visualizarFuncionarios():
 
 # Area para criar uma nova tarefa
 def criarTarefa():
-    os.system("clear")
+    os.system("clear || cls")
 
     print("-"*10, " Criar Tarefa ", "-"*10)
+
+    with open("user.json", "r") as file:
+        user_dados = json.load(file)
+        token = user_dados["token"]
     
     tarefa = {
         "nome": "",
@@ -92,7 +105,7 @@ def criarTarefa():
     print("Digite a data prevista para conclusão(formato dd-mm-aaaa): ")
     tarefa["data_prevista_conclusao"] = input(">> ")
 
-    request = requests.get(url+"/admin/funcionarios")
+    request = requests.get(url+"/admin/funcionarios?token="+token)
 
     print("Funcionários")
 
@@ -115,7 +128,7 @@ def criarTarefa():
     if tarefa["funcionariosId"] == []:
         print("A tarefa deve ter funcionarios!")
     else:
-        request = requests.put(url+"/admin/tarefas", json=tarefa)
+        request = requests.put(url+"/admin/tarefas?token="+token, json=tarefa)
 
         if request.status_code == 200:
             print("Tarefa criada com sucesso!")
@@ -126,11 +139,15 @@ def criarTarefa():
 
 # Area para visualizar tarefas cadastradas no sistema
 def visualizarTarefas():
-    os.system("clear")
+    os.system("clear || cls")
 
     print("-"*10, " Visualizar Tarefas ", "-"*10)
 
-    request = requests.get(url+"/admin/tarefas")
+    with open("user.json", "r") as file:
+        user_dados = json.load(file)
+        token = user_dados["token"]
+
+    request = requests.get(url+"/admin/tarefas?token="+token)
 
     if request.json() == []:
         print("Sem tarefas cadastradas!")
@@ -150,11 +167,15 @@ def visualizarTarefas():
 
 # Area para visualizar relatorios
 def visualizarRelatorios():
-    os.system("clear")
+    os.system("clear || cls")
 
     print("-"*10, " Visualizar Relatorios ", "-"*10)
 
-    request = requests.get(url+"/admin/relatorios")
+    with open("user.json", "r") as file:
+        user_dados = json.load(file)
+        token = user_dados["token"]
+
+    request = requests.get(url+"/admin/relatorios?token="+token)
 
     if request.json() == []:
         print("Sem relatórios cadastrados!")
