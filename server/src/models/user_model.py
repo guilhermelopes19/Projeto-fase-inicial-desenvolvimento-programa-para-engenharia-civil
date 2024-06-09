@@ -10,3 +10,4 @@ class UserOut(BaseModel):
     id: int
     username: str
     tipo: str
+    token: str = None

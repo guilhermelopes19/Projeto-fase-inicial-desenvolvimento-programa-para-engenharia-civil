@@ -2,7 +2,7 @@ from src.database import conexaoBancoDados
 from src.models.user_model import UserIn, UserOut
 
 # Valida o usuario no banco de dados. Recebe como argumento um objeto UserIn
-def validarUser(user: UserIn) -> bool:
+def validarUser(user: UserIn) -> dict:
     conn = conexaoBancoDados()
     cursor = conn.cursor()
 
@@ -15,11 +15,12 @@ def validarUser(user: UserIn) -> bool:
     if query != None:
         return {
             "status": True,
-            "user": UserOut(id=query[0], username=query[1], tipo=query[3])}
+            "user": UserOut(id=query[0], username=query[1], tipo=query[3])
+        }
     
     return {
             "status": False
-        }
+    }
 
 # Adiciona um funcionario no banco de dados. Recebe um objeto UserIn
 def adicionarFuncionario(func: UserIn) -> bool:
