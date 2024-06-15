@@ -3,7 +3,7 @@ import sqlite3
 # Cria a conexão com banco de dados
 def conexaoBancoDados() -> sqlite3.Connection:
 
-    caminhoBd = "./database/gerenciador-tarefas.db"
+    caminhoBd = "./server/database/gerenciador-tarefas.db"
     
     conn = sqlite3.connect(caminhoBd)
 

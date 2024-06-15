@@ -26,15 +26,15 @@ app.router.lifespan_context = lifespan
 async def autenticar_user(user: UserIn):
     validarUser = user_database.validarUser(user=user)
 
-    token = jwt.encode({
-        'exp': datetime.now(timezone.utc) + timedelta(minutes=30),
-        "nivel-acesso": validarUser.get("user").tipo,
-        "id": validarUser.get("user").id
-    }, key=token_secret, algorithm='HS256')
-
-    validarUser.get("user").token = token
-
     if validarUser.get("status"):
+        token = jwt.encode({
+            'exp': datetime.now(timezone.utc) + timedelta(minutes=30),
+            "nivel-acesso": validarUser.get("user").tipo,
+            "id": validarUser.get("user").id
+        }, key=token_secret, algorithm='HS256')
+
+        validarUser.get("user").token = token
+
         return validarUser.get("user")
     else:
         raise HTTPException(
