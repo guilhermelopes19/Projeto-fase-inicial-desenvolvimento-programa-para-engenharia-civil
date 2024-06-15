@@ -1,4 +1,4 @@
-# Projeto Gerenciador de tarefas 🗒️
+# Projeto Gerenciador de Tarefas 🗒️
 
 Pensando no futuro, onde se deseja um ambiente produtivo e organizado, teve-se como ideia, a criação de um programa em python que fosse capaz gerenciar tarefas básicas de uma obra da construção civil, buscando proporcionar uma maior organização nas tarefas que deverão ser executadas.
 
