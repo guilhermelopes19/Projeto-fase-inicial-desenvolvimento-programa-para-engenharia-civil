@@ -3,7 +3,7 @@ import admin_view
 import funcionario_view
 
 def login_window():
-    sg.theme('Reddit')
+    sg.theme('GreenTan')
     layout = [
         [sg.Text("Nome de usuario")], 
         [sg.Input(key="username")],
@@ -16,7 +16,7 @@ def login_window():
     return sg.Window("Login", layout=layout, finalize=True)
 
 def menu_admin_window():
-    sg.theme('Reddit')
+    sg.theme('GreenTan')
     layout = [
         [sg.Button("Adicionar Funcionario")],
         [sg.Button("Visualizar Funcionarios")],
@@ -29,7 +29,7 @@ def menu_admin_window():
     return sg.Window("Menu Admin", layout=layout, finalize=True)
 
 def menu_func_window():
-    sg.theme('Reddit')
+    sg.theme('GreenTan')
     layout = [
         [sg.Button("Visualizar Tarefas")],
         [sg.Button("Adicionar Relatorio")],
@@ -40,7 +40,7 @@ def menu_func_window():
     return sg.Window("Menu Funcionario", layout=layout, finalize=True)
 
 def adicionar_func_window():
-    sg.theme('Reddit')
+    sg.theme('GreenTan')
     layout = [
         [sg.Text("Nome do funcionario")],
         [sg.Input(key="nomeFunc")],
@@ -55,7 +55,7 @@ def adicionar_func_window():
     return sg.Window("Adicionar Funcionario", layout=layout, finalize=True)
 
 def adicionar_tarefa_window():
-    sg.theme('Reddit')
+    sg.theme('GreenTan')
     layout = [
         [sg.Text("Nome da Tarefa")],
         [sg.Input(key="nomeTarefa")],
@@ -90,7 +90,7 @@ def adicionar_tarefa_window():
     return sg.Window("Criar Tarefa", layout=layout, finalize=True), c, listaFuncionarios
 
 def visualizar_funcs_window():
-    sg.theme('Reddit')
+    sg.theme('GreenTan')
     layout = [
         [sg.Text("Funcionarios: ")],
     ]
@@ -112,7 +112,7 @@ def visualizar_funcs_window():
     return sg.Window("Visualizar Funcionarios", layout=layout, finalize=True)
 
 def visualizar_tarefas_window():
-    sg.theme('Reddit')
+    sg.theme('GreenTan')
     layout = [
         [sg.Text("Tarefas: ")],
     ]
@@ -139,7 +139,7 @@ def visualizar_tarefas_window():
     return sg.Window("Visualizar Tarefas", layout=layout, finalize=True)
 
 def visualizar_relatorios_window():
-    sg.theme('Reddit')
+    sg.theme('GreenTan')
     layout = [
         [sg.Text("Relatorios: ")],
     ]
@@ -161,7 +161,7 @@ def visualizar_relatorios_window():
     return sg.Window("Visualizar Relatorios", layout=layout, finalize=True)
 
 def visualizar_tarefas_funcionario_window():
-    sg.theme('Reddit')
+    sg.theme('GreenTan')
     layout = [
         [sg.Text("Tarefas: ")],
     ]
@@ -183,7 +183,7 @@ def visualizar_tarefas_funcionario_window():
     return sg.Window("Visualizar Tarefas", layout=layout, finalize=True)
 
 def adicionar_relatorio_window():
-    sg.theme('Reddit')
+    sg.theme('GreenTan')
     layout = [[sg.Text("Selecione a tarefa do relatorio")]]
 
     listaTarefas = funcionario_view.visualizarTarefas()
@@ -213,7 +213,7 @@ def adicionar_relatorio_window():
     return sg.Window("Adicionar relatorio", layout=layout, finalize=True), c, listaTarefas
 
 def visualizar_relatorios_funcionario_window():
-    sg.theme('Reddit')
+    sg.theme('GreenTan')
     layout = [
         [sg.Text("Relatorios: ")],
     ]
