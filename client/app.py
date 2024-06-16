@@ -66,28 +66,35 @@ def main():
         if window == window_menu_admin and event == "Adicionar Funcionario":
             window_menu_admin.hide()
             window_admin_adicionar_func = windows.adicionar_func_window()
-        if window == window_menu_admin and event == "Visualizar Funcionario":
+
+        if window == window_menu_admin and event == "Visualizar Funcionarios":
             window_menu_admin.hide()
             window_admin_visualizar_func = windows.visualizar_funcs_window()
 
-        if window == window_menu_admin and event == " Criar Tarefa":
+        if window == window_menu_admin and event == "Criar Tarefa":
             window_menu_admin.hide()
-            window_admin_adicionar_tarefa,numFuncionarios,listaFuncionarios = windows.adicionar__window()
+            window_admin_adicionar_tarefa,numFuncionarios,listaFuncionarios = windows.adicionar_tarefa_window()
+
         if window == window_menu_admin and event == "Visualizar Tarefas":
             window_menu_admin.hide()
             window_admin_visualizar_tarefas = windows.visualizar_tarefas_window()
+
         if window == window_menu_admin and event == "Visualizar Relatorios":
             window_menu_admin.hide()
             window_admin_visualizar_relatorios = windows.visualizar_relatorios_window()
+
         if window == window_menu_func and event == "Visualizar Tarefas":
             window_menu_func.hide()
             window_func_visualizar_tarefas = windows.visualizar_tarefas_funcionario_window()
+
         if window == window_menu_func and event == "Adicionar Relatorio":
             window_menu_func.hide()
             window_func_adicionar_relatorio,numTarefas, listasTarefas = windows.adicionar_relatorio_window()
-        if window == window_menu_func and event == "Visualizar Relatórios":
+
+        if window == window_menu_func and event == "Visualizar Relatorios":
             window_menu_func.hide()
             window_func_visualizar_relatorios = windows.visualizar_relatorios_window()
+
         if event == "Cadastrar":
             status=None
             if  window== window_admin_adicionar_func:

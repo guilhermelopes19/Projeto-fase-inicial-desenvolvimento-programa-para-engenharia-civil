@@ -4,7 +4,6 @@ import json
 url = "http://127.0.0.1:8000"
 
 def adicionarFuncionario(usernameFunc,passwordFunc):
-
     with open("user.json", "r") as file:
         user_dados = json.load(file)
         token = user_dados["token"]
@@ -54,12 +53,11 @@ def visualizarTarefas():
 
     return request.json()
 def visualizarRelatorios():
-    
     with open("user.json", "r") as file:
         user_dados = json.load(file)
         token = user_dados["token"]
 
     request = requests.get(url+"/admin/relatorios?token="+token)
 
-    return  request.json()
+    return request.json()
  

@@ -13,7 +13,6 @@ def visualizarTarefas():
     request = requests.get(f"{url}/funcionario/tarefas?token={token}")
     return request.json()
 def adicionarRelatorio(idTarefa, textoRelatorio):
-
     with open("user.json", "r") as file:
         user_dados = json.load(file)
         idUser = user_dados["id"]
@@ -42,6 +41,6 @@ def visualizarRelatorios():
         user_dados = json.load(file)
         token = user_dados["token"]
 
-    request = requests.get(f"{url}/funcionario/relatorios?token={token}")
+    request = requests.get(url+"/funcionario/relatorios?token="+token)
     
     return request.json()
