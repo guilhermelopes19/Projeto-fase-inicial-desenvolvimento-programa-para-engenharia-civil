@@ -1,6 +1,6 @@
 import PySimpleGUI as sg
-import admin_view
-import funcionario_view
+from view import admin_view
+from view import funcionario_view
 
 def login_window():
     sg.theme('GreenTan')

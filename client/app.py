@@ -120,10 +120,6 @@ def main():
                     window["status_false"].update(visible=True)
     window_login.close()
 
-                        
-
-
-
 def login(username,password):
     
     request = requests.post(url+"/auth", json={"username": username, "password": password})
