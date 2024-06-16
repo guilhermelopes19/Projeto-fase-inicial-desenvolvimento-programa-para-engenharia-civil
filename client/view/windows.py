@@ -144,7 +144,7 @@ def visualizar_relatorios_window():
         [sg.Text("Relatorios: ")],
     ]
 
-    listaRelatorios = funcionario_view.visualizarRelatorios()
+    listaRelatorios = admin_view.visualizarRelatorios()
 
     if listaRelatorios == []:
         layout.append([sg.Text("Sem relatorios cadastrados!")])
