@@ -93,7 +93,7 @@ def main():
 
         if window == window_menu_func and event == "Visualizar Relatorios":
             window_menu_func.hide()
-            window_func_visualizar_relatorios = windows.visualizar_relatorios_window()
+            window_func_visualizar_relatorios = windows.visualizar_relatorios_funcionario_window()
 
         if event == "Cadastrar":
             status=None
