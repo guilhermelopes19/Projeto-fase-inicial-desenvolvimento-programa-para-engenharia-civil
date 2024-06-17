@@ -20,6 +20,7 @@ As seguintes bibliotecas serão instaladas
 - FastAPI
 - Uvicorn
 - Pydantic
+- PyJWT
 
 ### Cliente 💻
 As bibliotecas necessarias para o cliente podem ser instaladas com o seguinte comando: 
@@ -30,6 +31,7 @@ pip install -r requirements.txt
 ```
 A seguinte biblioteca sera instalada
 - Requests
+- PySimpleGUI
 
 ## Como rodar ⚙️
 
