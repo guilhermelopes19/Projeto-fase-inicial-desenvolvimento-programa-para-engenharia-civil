@@ -117,7 +117,7 @@ def main():
                 idTarefa=[]
                 i=0
                 while i<numTarefas:
-                    if values[f"{1}"]:
+                    if values[f"{i}"]:
                         idTarefa.append(listasTarefas[i].get("id"))
                     i+=1
                 status=funcionario_view.adicionarRelatorio(idTarefa[0],textoRelatorio)
