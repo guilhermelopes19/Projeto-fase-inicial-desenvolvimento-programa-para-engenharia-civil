@@ -29,7 +29,7 @@ As bibliotecas necessarias para o cliente podem ser instaladas com o seguinte co
 cd client
 pip install -r requirements.txt
 ```
-A seguinte biblioteca sera instalada
+As seguintes bibliotecas serão instaladas
 - Requests
 - PySimpleGUI
 
